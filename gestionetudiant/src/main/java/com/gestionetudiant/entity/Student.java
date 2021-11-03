@@ -1,9 +1,14 @@
 package com.gestionetudiant.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Student {
 	
-
-	private String numeroEtudiant;
+	@Id
+	private int numeroEtudiant;
 
 	private String nom;
 	
@@ -13,10 +18,10 @@ public class Student {
 	
 	
 	
-	public String getNumeroEtudiant() {
+	public int getNumeroEtudiant() {
 		return numeroEtudiant;
 	}
-	public void setNumeroEtudiant(String numeroEtudiant) {
+	public void setNumeroEtudiant(int numeroEtudiant) {
 		this.numeroEtudiant = numeroEtudiant;
 	}
 	public String getNom() {
@@ -37,7 +42,7 @@ public class Student {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	public Student(String numeroEtudiant, String nom, String prenom, int age) {
+	public Student(int numeroEtudiant, String nom, String prenom, int age) {
 		super();
 		this.numeroEtudiant = numeroEtudiant;
 		this.nom = nom;

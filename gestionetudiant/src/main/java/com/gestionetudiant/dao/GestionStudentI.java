@@ -12,7 +12,7 @@ public class GestionStudentI implements GestionStudent  {
 	
 	private List<Student> students=new ArrayList<>();
 	{
-		students.add(new Student("001","Paul","Henry",18));
+		students.add(new Student(001,"Paul","Henry",18));
 	}
 
 	@Override
@@ -28,9 +28,9 @@ public class GestionStudentI implements GestionStudent  {
 	}
 
 	@Override
-	public void updateStudent(String numeroEtudiant, String nom, String prenom, int age) {
+	public void updateStudent(int numeroEtudiant, String nom, String prenom, int age) {
 		for (Student std : students) {
-			if (std.getNumeroEtudiant().equals(numeroEtudiant)) {
+			if (std.getNumeroEtudiant() == numeroEtudiant) {
 				std.setNom(nom);
 				std.setPrenom(prenom);
 				std.setAge(age);
@@ -40,16 +40,16 @@ public class GestionStudentI implements GestionStudent  {
 	}
 
 	@Override
-	public void deleteStudent(String numeroEtudiant) {
+	public void deleteStudent(int numeroEtudiant) {
 		Student std = getStudent(numeroEtudiant);
 		students.remove(std);
 		
 	}
 
 	@Override
-	public Student getStudent(String numeroEtudiant) {
+	public Student getStudent(int numeroEtudiant) {
 		for (Student std : students) {
-			if (std.getNumeroEtudiant().equals(numeroEtudiant)) {
+			if (std.getNumeroEtudiant() == numeroEtudiant) {
 				return std;
 			}
 		}

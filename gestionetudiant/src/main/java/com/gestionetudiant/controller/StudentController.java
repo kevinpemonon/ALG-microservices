@@ -1,6 +1,7 @@
 package com.gestionetudiant.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -14,39 +15,47 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gestionetudiant.dao.GestionStudent;
+import com.gestionetudiant.dao.StudentDao;
 import com.gestionetudiant.entity.Student;
 
 @RestController
 public class StudentController {
 	
-	@Autowired
-	private GestionStudent gestionStudent;
+	//@Autowired
+	//private GestionStudent gestionStudent;
 	
+	@Autowired
+	private StudentDao studentDao;
 	
 	
 	@RequestMapping(value="/students", method=RequestMethod.GET)
     public List<Student> listeStudents() {
-        return gestionStudent.listStudent();
+        return studentDao.findAll();
+		//return gestionStudent.listStudent();
     }
 	
 	@PostMapping(value = "/students")
 	public void ajouterStudent(@RequestBody Student std) {
-		gestionStudent.addStudent(std);
+		studentDao.save(std);
+		//gestionStudent.addStudent(std);
 	}
 	
 	@RequestMapping(value="/students/{numStudent}")
-    public Student getStudent(@PathVariable String numStudent) {
-        return gestionStudent.getStudent(numStudent);
+    public Optional<Student> getStudent(@PathVariable int numStudent) {
+        return studentDao.findById(numStudent);
+		//return gestionStudent.getStudent(numStudent);
     }
 	
 	@PutMapping(value = "/students/{numStudent}")
-	public void modifierStudent(@RequestBody Student std, @PathVariable String numStudent) {
-		gestionStudent.updateStudent(std.getNumeroEtudiant(), std.getNom(), std.getPrenom(), std.getAge());
+	public void modifierStudent(@RequestBody Student std, @PathVariable Integer numStudent) {
+		studentDao.save(std);
+		//gestionStudent.updateStudent(std.getNumeroEtudiant(), std.getNom(), std.getPrenom(), std.getAge());
 	}
 	
 	@DeleteMapping(value = "/students/{numStudent}")
-	public void deleteStudent(@PathVariable String numStudent) {
-		gestionStudent.deleteStudent(numStudent);
+	public void deleteStudent(@PathVariable int numStudent) {
+		studentDao.deleteById(numStudent);
+		//gestionStudent.deleteStudent(numStudent);
 	}
 
 }
