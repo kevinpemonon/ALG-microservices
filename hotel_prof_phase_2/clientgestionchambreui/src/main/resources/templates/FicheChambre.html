@@ -32,8 +32,12 @@
 				<p th:text="${chambre.statut}"></p>
 				
 				<p>
-					<a th:href="@{|/infos-chambre/reserver-chambre/${chambre.num}/${chambre.prix}|}"
+					<a th:if="${chambre.statut eq 'Libre'}" th:href="@{|/infos-chambre/reserver-chambre/${chambre.num}/${chambre.prix}|}"
 						class="font-weight-bold">RESERVER</a>
+				</p>
+				<p>
+					<a th:if="${chambre.statut eq 'Occupe'}" th:href="@{|/infos-chambre/reserver-chambre/${chambre.num}/${chambre.prix}|}"
+						class="font-weight-bold">DEJA RESERVEE</a>
 				</p>
 
 			</div>

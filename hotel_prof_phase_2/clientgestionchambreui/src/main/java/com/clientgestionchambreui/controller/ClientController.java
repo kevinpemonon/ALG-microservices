@@ -95,12 +95,16 @@ public class ClientController {
         
         chambreReq.setStatut("Occupe");
         
-        chambresProxy.updateCommande(chambreReq);
+        chambresProxy.updateChambre(chambreReq);
+        
+        ReservationBean reservation = reservationProxy.recupererUneReservation(idReservation);
 
         Boolean paiementAccepte = false;
         //si le code est autre que 201 CREATED, c'est que le paiement n'a pas pu aboutir.
         if(paiement.getStatusCode() == HttpStatus.CREATED)
                 paiementAccepte = true;
+		        reservation.setReservationPayee(true);
+		        reservationProxy.updateUneReservation(reservation, idReservation);
 
         model.addAttribute("paiementOk", paiementAccepte); // on envoi un Boolean paiementOk à la vue
 

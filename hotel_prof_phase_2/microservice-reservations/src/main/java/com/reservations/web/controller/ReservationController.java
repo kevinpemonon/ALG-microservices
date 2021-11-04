@@ -38,4 +38,12 @@ public class ReservationController {
 
         return reservation;
     }
+    
+    @PutMapping (value = "/reservations/{id}")
+    public ResponseEntity<Reservation> updateReservation(@RequestBody Reservation reservation){
+
+    	reservationDao.save(reservation);
+
+        return new ResponseEntity<Reservation>(reservation, HttpStatus.CREATED);
+    }
 }
