@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Gestion Chambre</title>
+
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.0.0-2/css/bootstrap.min.css" />
+
+</head>
+<body>
+
+
+	<div class="container">
+
+		<h1>Application Gestion des chambres</h1>
+
+		<div class="row">
+			<div class="col-md-4 mx-auto mt-5 text-center">
+			
+				
+				
+				<p th:text="${chambre.num}" class="font-weight-bold"></p>
+
+				<p th:text="${chambre.description}" class="font-weight-bold"></p>
+
+				<p th:text="${chambre.surface}"></p>
+				
+				<p th:text="${chambre.categorie}"></p>
+				
+				<p th:text="${chambre.prix}"></p>
+				
+				<p th:text="${chambre.statut}"></p>
+				
+				<p>
+					<a th:if="${chambre.statut eq 'Libre'}" th:href="@{|/infos-chambre/reserver-chambre/${chambre.num}/${chambre.prix}|}"
+						class="font-weight-bold">RESERVER</a>
+				</p>
+				<p>
+					<a th:if="${chambre.statut eq 'Occupe'}" th:href="@{|/infos-chambre/reserver-chambre/${chambre.num}/${chambre.prix}|}"
+						class="font-weight-bold">DEJA RESERVEE</a>
+				</p>
+
+			</div>
+
+		</div>
+
+
+		<script type="text/javascript"
+			src="webjars/bootstrap/4.0.0-2/js/bootstrap.min.js"></script>
+</body>
+</html>
